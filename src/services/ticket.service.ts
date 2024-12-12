@@ -41,7 +41,7 @@ export const bookNewTicket = async (
 
 // Lấy danh sách vé của người dùng
 export const getTicketsByUserId = async (
-  userId: string
+  userId: mongoose.Types.ObjectId
 ): Promise<ITicket[]> => {
   return Ticket.find({ user: userId }).populate("trip");
 };
@@ -49,7 +49,7 @@ export const getTicketsByUserId = async (
 // Hủy vé
 export const cancelTicketById = async (
   ticketId: string,
-  userId: string
+  userId: mongoose.Types.ObjectId
 ): Promise<boolean> => {
   const ticket = await Ticket.findOne({ _id: ticketId, user: userId });
   if (!ticket) throw new Error("Ticket not found");

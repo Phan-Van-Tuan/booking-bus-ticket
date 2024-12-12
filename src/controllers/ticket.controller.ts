@@ -30,7 +30,7 @@ export const getUserTickets = async (
   next: NextFunction
 ) => {
   try {
-    const userId = "req.user.id"; // `req.user` được gắn từ middleware `authenticate`
+    const userId = req.user.id; // `req.user` được gắn từ middleware `authenticate`
     const tickets = await getTicketsByUserId(userId);
     res.status(200).json({ tickets });
   } catch (error) {
@@ -46,7 +46,7 @@ export const cancelTicket = async (
 ) => {
   try {
     const ticketId = req.params.id;
-    const userId = "req.user.id"; // `req.user` được gắn từ middleware `authenticate`
+    const userId = req.user.id; // `req.user` được gắn từ middleware `authenticate`
     const result = await cancelTicketById(ticketId, userId);
     if (!result)
       res.status(404).json({ message: "Ticket not found or already canceled" });

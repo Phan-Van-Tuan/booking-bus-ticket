@@ -9,8 +9,8 @@ export interface ITicket extends Document {
 
 const TicketSchema: Schema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    trip: { type: Schema.Types.ObjectId, ref: "Trip", required: true },
+    user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
+    trip: { type: mongoose.Types.ObjectId, ref: "Trip", required: true },
     seatNumber: { type: Number, required: true },
     status: { type: String, default: "booked" },
   },
