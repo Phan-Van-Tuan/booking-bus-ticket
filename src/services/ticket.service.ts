@@ -43,7 +43,10 @@ export const bookNewTicket = async (
 export const getTicketsByUserId = async (
   userId: mongoose.Types.ObjectId
 ): Promise<ITicket[]> => {
-  return Ticket.find({ user: userId }).populate("trip");
+  return Ticket.find({ user: userId }).populate("trip").populate({
+    path: "user",
+    select: "-password", // Loại trừ trường password
+  });
 };
 
 // Hủy vé

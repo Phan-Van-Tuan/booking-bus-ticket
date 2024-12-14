@@ -1,3 +1,4 @@
+import { string } from "joi";
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface ITrip extends Document {
@@ -8,6 +9,7 @@ export interface ITrip extends Document {
   departureTime: Date;
   repeat: number;
   price: number;
+  type: string;
   availableSeats: number;
   expireAt: Date;
 }
@@ -22,6 +24,7 @@ const TripSchema: Schema = new Schema(
     // 0: no-repeat, 1: repeat-dayly, 2: repeat-weekly, 3: repeat-monthly.
     repeat: { type: Number, default: 0 },
     price: { type: Number, required: true },
+    type: { type: String },
     availableSeats: { type: Number, required: true },
     expireAt: { type: Date },
   },
