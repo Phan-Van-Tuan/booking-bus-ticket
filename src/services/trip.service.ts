@@ -70,6 +70,8 @@ export const getAllTrips = async (filters: any): Promise<any> => {
         ],
       },
     ],
+    ...(filters.startLocation && { startLocation: filters.startLocation }),
+    ...(filters.endLocation && { endLocation: filters.endLocation }),
   };
 
   // Lấy giờ và phút của `filters.time`
