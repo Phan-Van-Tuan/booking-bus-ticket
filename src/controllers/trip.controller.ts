@@ -31,9 +31,12 @@ export const getTripById = async (
   next: NextFunction
 ) => {
   try {
-    const tripDetail = await getTripDetails(req.params.id);
-    if (!tripDetail) res.status(404).json({ message: "Trip not found" });
-    res.status(200).json({ tripDetail });
+    const trip = await getTripDetails(req.params.id);
+    if (!trip) res.status(404).json({ message: "Trip not found" });
+    res.status(200).json({
+      message: "",
+      data: { trip },
+    });
   } catch (error) {
     next(error);
   }
@@ -47,7 +50,10 @@ export const createTrip = async (
 ) => {
   try {
     const trip = await createNewTrip(req.body);
-    res.status(201).json({ trip });
+    res.status(201).json({
+      message: "",
+      data: { trip },
+    });
   } catch (error) {
     next(error);
   }
@@ -62,7 +68,10 @@ export const updateTrip = async (
   try {
     const trip = await updateTripById(req.params.id, req.body);
     if (!trip) res.status(404).json({ message: "Trip not found" });
-    res.status(200).json({ trip });
+    res.status(200).json({
+      message: "",
+      data: { trip },
+    });
   } catch (error) {
     next(error);
   }
@@ -77,7 +86,9 @@ export const deleteTrip = async (
   try {
     const result = await deleteTripById(req.params.id);
     if (!result) res.status(404).json({ message: "Trip not found" });
-    res.status(200).json({ message: "Trip deleted successfully" });
+    res.status(200).json({
+      message: "Trip deleted successfully",
+    });
   } catch (error) {
     next(error);
   }

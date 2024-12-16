@@ -11,7 +11,6 @@ export interface ITrip extends Document {
   price: number;
   type: string;
   availableSeats: number;
-  expireAt: Date;
 }
 
 const TripSchema: Schema = new Schema(
@@ -26,7 +25,6 @@ const TripSchema: Schema = new Schema(
     price: { type: Number, required: true },
     type: { type: String },
     availableSeats: { type: Number, required: true },
-    expireAt: { type: Date },
   },
   { timestamps: true }
 );
