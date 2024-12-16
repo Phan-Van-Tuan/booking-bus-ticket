@@ -7,6 +7,7 @@ export interface ITrip extends Document {
   startTime: Date;
   endTime: Date;
   departureTime: Date;
+  arriveTime: Date;
   repeat: number;
   price: number;
   type: string;
@@ -20,6 +21,7 @@ const TripSchema: Schema = new Schema(
     startTime: { type: Date },
     endTime: { type: Date },
     departureTime: { type: Date, require: true },
+    arriveTime: { type: Date, require: true },
     // 0: no-repeat, 1: repeat-dayly, 2: repeat-weekly, 3: repeat-monthly.
     repeat: { type: Number, default: 0 },
     price: { type: Number, required: true },
