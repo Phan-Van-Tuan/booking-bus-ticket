@@ -27,7 +27,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+<<<<<<< HEAD
     "firebase-admin": "^13.0.1",
+=======
+>>>>>>> 37da2e9888ed0f5bff3895bfee6b5463319527c2
     "helmet": "^8.0.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",

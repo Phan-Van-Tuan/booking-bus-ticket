@@ -1,6 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import {
+<<<<<<< HEAD
   createTrips,
+=======
+  createNewTrip,
+>>>>>>> 37da2e9888ed0f5bff3895bfee6b5463319527c2
   getAllTrips,
   getTripDetails,
   updateTripById,
@@ -35,7 +39,11 @@ export const getTripById = async (
     if (!trip) res.status(404).json({ message: "Trip not found" });
     res.status(200).json({
       message: "",
+<<<<<<< HEAD
       data: trip,
+=======
+      data: { trip },
+>>>>>>> 37da2e9888ed0f5bff3895bfee6b5463319527c2
     });
   } catch (error) {
     next(error);
@@ -49,10 +57,17 @@ export const createTrip = async (
   next: NextFunction
 ) => {
   try {
+<<<<<<< HEAD
     const trip = await createTrips(req.body);
     res.status(201).json({
       message: "",
       data: trip,
+=======
+    const trip = await createNewTrip(req.body);
+    res.status(201).json({
+      message: "",
+      data: { trip },
+>>>>>>> 37da2e9888ed0f5bff3895bfee6b5463319527c2
     });
   } catch (error) {
     next(error);
@@ -70,7 +85,11 @@ export const updateTrip = async (
     if (!trip) res.status(404).json({ message: "Trip not found" });
     res.status(200).json({
       message: "",
+<<<<<<< HEAD
       data: trip,
+=======
+      data: { trip },
+>>>>>>> 37da2e9888ed0f5bff3895bfee6b5463319527c2
     });
   } catch (error) {
     next(error);

@@ -1,10 +1,14 @@
 import { NextFunction, Request, Response } from "express";
+<<<<<<< HEAD
 import {
   getUserById,
   login,
   register,
   updateUser,
 } from "../services/user.service";
+=======
+import { getUserById, updateUser } from "../services/user.service";
+>>>>>>> 37da2e9888ed0f5bff3895bfee6b5463319527c2
 
 // Lấy thông tin cá nhân của người dùng
 export const getUserProfile = async (
@@ -40,6 +44,7 @@ export const updateUserProfile = async (
     next(error);
   }
 };
+<<<<<<< HEAD
 
 export const registerUser = async (
   req: Request,
@@ -73,3 +78,5 @@ export const loginUser = async (
     next(error);
   }
 };
+=======
+>>>>>>> 37da2e9888ed0f5bff3895bfee6b5463319527c2
