@@ -1,12 +1,9 @@
 import mongoose from "mongoose";
-<<<<<<< HEAD
 import bcrypt from "bcryptjs";
 import User, { IUser } from "../models/user.model";
 import { config } from "../config/env";
 import { generateToken } from "../utils/jwt";
-=======
-import User, { IUser } from "../models/user.model";
->>>>>>> 37da2e9888ed0f5bff3895bfee6b5463319527c2
+
 
 // Lấy thông tin người dùng theo ID
 export const getUserById = async (
@@ -24,7 +21,6 @@ export const updateUser = async (
     "-password"
   );
 };
-<<<<<<< HEAD
 
 export const register = async (userData: Partial<IUser>) => {
   const hashedPassword = await bcrypt.hash(userData.password!, config.SALT);
@@ -42,5 +38,4 @@ export const login = async (email: string, password: string) => {
   user.password = "";
   return { user, token };
 };
-=======
->>>>>>> 37da2e9888ed0f5bff3895bfee6b5463319527c2
+
