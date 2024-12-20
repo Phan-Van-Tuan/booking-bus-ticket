@@ -1,8 +1,10 @@
 import _Payment from "../models/payment.model";
 import crypto from "crypto";
 import { URLSearchParams } from "url";
-import { config } from "../config/env";
+import { config } from "../configs/env.config";
 import { VnpParams } from "../utils/VnpParams.interface";
+import { confirmBooking } from "./booking.service";
+import { info } from "console";
 
 class PaymentService {
   async getAll() {
@@ -14,7 +16,7 @@ class PaymentService {
     }
   }
 
-  async createPayment(amount: number, ip: string) {
+  async createPayment(amount: number, ip: string, content: string) {
     try {
       const orderId = `${Date.now()}`;
       const vnp_Params: VnpParams = {
@@ -24,7 +26,7 @@ class PaymentService {
         vnp_Locale: "vn",
         vnp_CurrCode: "VND",
         vnp_TxnRef: orderId,
-        vnp_OrderInfo: "Thanh toan cho ma GD:" + orderId,
+        vnp_OrderInfo: content,
         vnp_OrderType: "other",
         vnp_Amount: `${amount * 100}`,
         vnp_ReturnUrl: config.vnp_ReturnUrl,
@@ -72,13 +74,18 @@ class PaymentService {
       const hmac = crypto.createHmac("sha512", config.vnp_HashSecret);
       const signed = hmac.update(Buffer.from(signData, "utf-8")).digest("hex");
       if (secureHash === signed) {
-        // let newPayment = new _Payment(
-        //   vnp_Params.vnp_TxnRef,
-        //   1,
-        //   vnp_Params.vnp_Amount,
-        //   vnp_Params.vnp_BankCode
-        // );
-        // await newPayment.save();
+        const data = JSON.parse(vnp_Params.vnp_OrderInfo);
+        let newPayment = new _Payment({
+          tripId: data.tripId,
+          userId: data.userId,
+          amount: vnp_Params.vnp_Amount,
+          method: "vnpay",
+          status: "completed",
+          info: vnp_Params,
+        });
+        await newPayment.save();
+
+        confirmBooking(vnp_Params.vnp_OrderInfo);
         return true;
       }
       return false;

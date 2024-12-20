@@ -1,8 +1,6 @@
 import app from "./app";
-import { config } from "./config/env";
+import { config } from "./configs/env.config";
 
-const PORT = config.PORT || 4500;
-
-app.listen(PORT, () => {
-  console.log(`[SETUP] Server is running on http://localhost:${PORT}`);
+app.listen(config.PORT, () => {
+  console.log(`[SETUP] Server is running on http://localhost:${config.PORT}`);
 });

@@ -1,5 +1,5 @@
 import { Message } from "firebase-admin/lib/messaging/messaging-api";
-import { firebaseMessaging } from "../config/firebase.config";
+import { firebaseMessaging } from "../configs/firebase.config";
 
 class NotificationService {
   /**

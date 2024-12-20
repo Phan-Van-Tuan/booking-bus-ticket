@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import {
-  bookNewTicket,
   getTicketsByUserId,
   cancelTicketById,
+  bookingQueue,
 } from "../services/booking.service";
 
 // Đặt vé
@@ -12,12 +12,25 @@ export const bookTicket = async (
   next: NextFunction
 ) => {
   try {
-    const userId = req.user.id; // `req.user` được gắn từ middleware `authenticate`
-    const ticket = await bookNewTicket(userId, req.body);
-    res.status(201).json({
-      message: "success",
-      data: ticket,
+    const userId = req.user.id;
+    const job = await bookingQueue.add({
+      seatId: req.body.seatId,
+      userId: userId,
+      tripId: req.body.tripId,
+      ip: req.ip,
     });
+    job
+      .finished()
+      .then((result: any) => {
+        return res.status(201).json({
+          message: "success",
+          data: result,
+        });
+      })
+      .catch((error) => {
+        console.error("[ERROR] ----- Lỗi khi hoàn thành công việc:", error);
+      });
+    return;
   } catch (error) {
     next(error);
   }

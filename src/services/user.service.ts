@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import User, { IUser } from "../models/user.model";
-import { config } from "../config/env";
+import { config } from "../configs/env.config";
 import { generateToken } from "../utils/jwt";
-
 
 // Lấy thông tin người dùng theo ID
 export const getUserById = async (
@@ -38,4 +37,3 @@ export const login = async (email: string, password: string) => {
   user.password = "";
   return { user, token };
 };
-

@@ -1,6 +1,6 @@
 import User, { IUser } from "../models/user.model";
 import bcrypt from "bcryptjs";
-import { config } from "../config/env";
+import { config } from "../configs/env.config";
 import { generateToken, decodeToken } from "../utils/jwt";
 
 export const register = async (userData: Partial<IUser>) => {
@@ -15,7 +15,7 @@ export const login = async (email: string, password: string) => {
   if (!isMatch) throw new Error("Invalid credentials");
 
   const token = generateToken({ id: user._id, role: user.role }, "1d");
-  
+
   user.password = "";
   return { user, token };
 };

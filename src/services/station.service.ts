@@ -1,4 +1,4 @@
-import stations from "../config/station";
+import stations from "../configs/station";
 
 export const getAllStation = () => {
   return stations;

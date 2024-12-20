@@ -8,6 +8,8 @@ export interface ITrip extends Document {
   arriveTime: Date;
   price: number;
   availableSeats: number;
+  booked: number[];
+  reserved: number[];
 }
 
 export interface CreateTripParams {
@@ -19,7 +21,7 @@ export interface CreateTripParams {
     startDate: Date;
     endDate?: Date;
     type: "just_one" | "daily" | "weekly" | "monthly" | "custom";
-    customSchedule: number
+    customSchedule: number;
     time: { departure: string; drive: number };
   };
 }
@@ -33,6 +35,8 @@ const TripSchema: Schema = new Schema(
     arriveTime: { type: Date, require: true },
     price: { type: Number, required: true },
     availableSeats: { type: Number, required: true },
+    booked: { type: Array },
+    reserved: { type: Array },
   },
   { timestamps: true }
 );

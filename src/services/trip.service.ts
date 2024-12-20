@@ -1,5 +1,5 @@
 import Trip, { CreateTripParams, ITrip } from "../models/trip.model";
-import stations from "../config/station";
+import stations from "../configs/station";
 import Bus from "../models/bus.model";
 
 // Hàm chuyển đổi mã bến thành tên bến cho một chuyến đi

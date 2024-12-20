@@ -21,7 +21,8 @@ class PaymentController {
       const { bankCode, amount } = req.body;
       const paymentUrl = await PaymentService.createPayment(
         amount,
-        req.ip as string
+        req.ip as string,
+        "alo"
       );
 
       res.json({

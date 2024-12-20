@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface IPayment extends Document {
-  orderId: mongoose.Schema.Types.ObjectId;
+  tripId: mongoose.Schema.Types.ObjectId;
   userId: mongoose.Schema.Types.ObjectId;
   amount: number;
   method: "cod" | "vnpay" | "credit_card" | "paypal" | "bank_transfer";
@@ -12,9 +12,9 @@ export interface IPayment extends Document {
 
 const paymentSchema: Schema = new mongoose.Schema<IPayment>(
   {
-    orderId: {
+    tripId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Order",
+      ref: "Trip",
       required: true,
     },
     userId: {

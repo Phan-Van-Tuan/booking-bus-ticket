@@ -1,4 +1,4 @@
-import stations from "../config/station";
+import stations from "../configs/station";
 import Bus, { IBus } from "../models/bus.model";
 
 export const getAllStation = () => {
